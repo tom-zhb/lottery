@@ -8,12 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="common" />
         <module name="lottery-api" />
+        <module name="spider" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="common" target="1.8" />
       <module name="lottery" target="1.5" />
       <module name="lottery-api" target="1.8" />
+      <module name="spider" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
