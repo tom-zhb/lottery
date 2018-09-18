@@ -1,0 +1,166 @@
+server:
+  context-path: /online-classroom
+#  tomcat:
+#    max-threads: 500
+#    accept-count: 500
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+    min-response-size: 2048
+
+spring:
+ application.name: classroom
+ profiles.active: local
+ output.ansi.enabled: detect
+
+---
+spring:
+  profiles: local
+
+  datasource:
+    scalper:
+      url: jdbc:mysql://localhost:3305/scalper?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull
+      username: scalper
+      password: Fjdn!2fgE
+      driverClassName: com.mysql.jdbc.Driver
+
+    oauth:
+      url: jdbc:mysql://localhost:3301/panamera?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull
+      username: vipkid_xb
+      password: jmdneyh4m2UT
+      driverClassName: com.mysql.jdbc.Driver
+
+    classrecorder:
+      url: jdbc:mysql://localhost:3302/db_classrecorder?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull
+      username: root
+      password:
+      driverClassName: com.mysql.jdbc.Driver
+
+server:
+  port: 8086
+
+signal:
+  secretKey: "(*&^%$#@!_vipkid"
+  site: "vipkid"
+
+classroomUrl: http://a5-www.sayabc.com
+putEnterTimeUrl: ""
+redis:
+  cluster:
+    nodes:
+      - localhost:7701
+      - localhost:7702
+      - localhost:7703
+      - localhost:7704
+      - localhost:7705
+      - localhost:7706
+    max-redirects: 3
+
+#elasticsearch:
+#  cluster-nodes: 127.0.0.1:9000
+
+elasticsearch:
+  cluster-name: elasticsearch
+  cluster-nodes: localhost:9300
+
+cache.enabled: false
+
+---
+spring:
+  profiles: test
+
+  datasource:
+    scalper:
+      url: jdbc:mysql://10.102.144.49:3306/scalper?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull
+      username: scalper
+      password: Fjdn!2fgE
+      driverClassName: com.mysql.jdbc.Driver
+
+    oauth:
+      url: jdbc:mysql://10.102.132.147:3316/panamera?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull
+      username: vipkid_xb
+      password: jmdneyh4m2UT
+      driverClassName: com.mysql.jdbc.Driver
+
+    classrecorder:
+      url: jdbc:mysql://10.103.132.53:3306/db_classrecorder?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull
+      username: root
+      password:
+      driverClassName: com.mysql.jdbc.Driver
+
+server:
+  port: 8186
+
+signal:
+  secretKey: "(*&^%$#@!_vipkid"
+  site: "vipkid"
+
+classroomUrl: http://a5-www.sayabc.com
+putEnterTimeUrl: http://10.102.131.173:9092/api/v1/classroom/classroomoper/enterTime
+
+
+redis:
+  cluster:
+    nodes:
+      - 10.102.144.31:7717
+      - 10.102.144.32:7717
+      - 10.102.148.124:7717
+      - 10.102.144.31:7718
+      - 10.102.144.32:7718
+      - 10.102.148.124:7718
+    max-redirects: 3
+elasticsearch:
+  cluster-name: elasticsearch
+  cluster-nodes: 10.102.131.92:9300
+
+cache.enabled: true
+
+
+---
+spring:
+  profiles: production
+
+  datasource:
+    scalper:
+      url: jdbc:mysql://10.102.48.160:3306/online_classroom?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull
+      username: online_classroom_db
+      password: iW#Onp7^J
+      driverClassName: com.mysql.jdbc.Driver
+
+    oauth:
+      url: jdbc:mysql://10.102.2.186:3306/panamera?zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      username: inventory_r
+      password: CFbcrsNbpEemBg9tAmCsdnkx
+      driverClassName: com.mysql.jdbc.Driver
+
+    classrecorder:
+      url: jdbc:mysql://10.102.12.90:3306/db_classrecorder?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull
+      username: root
+      password:
+      driverClassName: com.mysql.jdbc.Driver
+
+server:
+  port: 8181
+
+signal:
+  secretKey: "(*&^%$#@!_vipkid"
+  site: "vipkid"
+
+classroomUrl: http://www.sayabc.com
+putEnterTimeUrl: http://10.102.1.153:8080/api/v1/classroom/classroomoper/enterTime
+
+redis:
+  cluster:
+    nodes:
+    - 10.102.48.158:7535
+    - 10.102.48.158:7536
+    - 10.102.63.112:7535
+    - 10.102.63.112:7536
+    - 10.102.48.159:7535
+    - 10.102.48.159:7536
+    max-redirects: 3
+elasticsearch:
+  cluster-name: vipkid_signalling
+  cluster-nodes: 10.102.2.189:7717,10.102.2.190:7717,10.102.12.87:7717
+
+cache.enabled: false
