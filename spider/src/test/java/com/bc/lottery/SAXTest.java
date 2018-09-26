@@ -15,7 +15,7 @@ public class SAXTest {
      * @param args
      */
     public static void main(String[] args) {
-        String strXML = "<?xml version=\"1.0\" encoding=\"gb2312\" ?><xml>" +
+        String strXML = "<?xml version=\"1.0\" encoding=\"gb2312\"?>" +
                 "                <row  expect=\"180917059\" opencode=\"1,4,6\" opentime=\"2018-09-17 18:50:00\" \n" +
                 "              /><row  expect=\"180917058\" opencode=\"3,3,5\" opentime=\"2018-09-17 18:40:00\" \n" +
                 "              /><row  expect=\"180917057\" opencode=\"5,1,2\" opentime=\"2018-09-17 18:30:00\" \n" +
@@ -83,7 +83,7 @@ public class SAXTest {
         try {
             SAXParser parser=factory.newSAXParser();
             //创建SAXParserHandler对象
-            SAXParserHandler handler=new SAXParserHandler();
+            WubaiwanParserHandler handler=new WubaiwanParserHandler();
 
             StringReader sr = new StringReader(strXML);
             InputSource is = new InputSource(sr);

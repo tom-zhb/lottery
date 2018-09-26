@@ -1,4 +1,4 @@
-package com.bc.lottery.core.annotation.intercepter;
+package com.bc.lottery.core.intercepter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
