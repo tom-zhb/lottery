@@ -12,9 +12,9 @@ import java.util.Properties;
 
 abstract class AbstractBaseDataSourceConfig {
 
-    public SqlSessionFactory sqlSessionFactory(DataSource panameraDataSource, String domainPackage, String mapperLocation) throws Exception {
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource, String domainPackage, String mapperLocation) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-        bean.setDataSource(panameraDataSource);
+        bean.setDataSource(dataSource);
         bean.setTypeAliasesPackage(domainPackage);
         //分页插件设置
         PageHelper pageHelper = new PageHelper();

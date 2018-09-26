@@ -1,7 +1,14 @@
 package com.bc.lottery.domain.lottery;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class KuaiSan {
-    private String issue;
-    private String openTime;
-    private String number;
+    public String issue;
+    public String openTime;
+    public String number;
 }

@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Table;
 
-
-@Table(name = "hubei_ks")
-public class HubeiKS extends KuaiSan{
-
+@Table(name = "anhui_ks")
+public class AnhuiKS extends KuaiSan {
 }
