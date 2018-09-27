@@ -4,6 +4,7 @@ import com.bc.lottery.domain.lottery.AnhuiKS;
 import com.bc.lottery.domain.lottery.HubeiKS;
 import com.bc.lottery.domain.lottery.KuaiSan;
 import com.bc.lottery.mapper.lottery.HubeiKSMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -18,11 +19,18 @@ public class KuaiSanService {
     private HubeiKSMapper hubeiKSMapper;
 
     public int save(KuaiSan kuaiSan) {
+        final KuaiSan useKuaiSan = trim(kuaiSan);
         if (kuaiSan instanceof HubeiKS) {
-            hubeiKSMapper.insert((HubeiKS) kuaiSan);
+            hubeiKSMapper.insert((HubeiKS) useKuaiSan);
         } else if (kuaiSan instanceof AnhuiKS) {
-            System.out.println("AnhuiKSAnhuiKSAnhuiKS");
         }
         return 0;
+    }
+
+    private KuaiSan trim(KuaiSan kuaiSan) {
+        kuaiSan.setIssue(StringUtils.trim(kuaiSan.getIssue()));
+        kuaiSan.setNumber(StringUtils.trim(kuaiSan.getNumber()));
+        kuaiSan.setOpenTime(kuaiSan.getOpenTime());
+        return kuaiSan;
     }
 }

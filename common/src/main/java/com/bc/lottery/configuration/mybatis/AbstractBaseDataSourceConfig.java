@@ -12,7 +12,8 @@ import java.util.Properties;
 
 abstract class AbstractBaseDataSourceConfig {
 
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource, String domainPackage, String mapperLocation) throws Exception {
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource, String domainPackage,
+                                               String mapperLocation) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         bean.setTypeAliasesPackage(domainPackage);
@@ -31,7 +32,7 @@ abstract class AbstractBaseDataSourceConfig {
         //添加XML目录
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         try {
-            bean.setMapperLocations(resolver.getResources(mapperLocation));
+            //bean.setMapperLocations(resolver.getResources(mapperLocation));
             return bean.getObject();
         } catch (Exception e) {
             e.printStackTrace();
