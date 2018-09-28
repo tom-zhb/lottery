@@ -1,10 +1,12 @@
 package com.bc.lottery.timer;
 
-import java.util.Date;
+import com.bc.lottery.enums.LotteryTypeEnum.KuaiSan;
 
-public class HubeiKSCountDown extends CountDown {
+public class HubeiKSCountDown extends CountDownTimer {
 
-    public HubeiKSCountDown(Date startDate, Date endDate, int timeInterval) {
-        super(null, null, timeInterval);
+    @Override
+    CountDownParam getCountDownParam() {
+        return CountDownConfiguration.getCountDownParam(KuaiSan.HUBEI);
     }
+
 }

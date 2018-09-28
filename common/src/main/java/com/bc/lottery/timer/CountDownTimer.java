@@ -2,17 +2,21 @@ package com.bc.lottery.timer;
 
 import lombok.Getter;
 
-import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
 @Getter
-public class CountDown {
-    public long curSec;
+public abstract class CountDownTimer {
+    private long curSec;
 
-    public CountDown(Calendar startDate, Calendar endDate, int timeInterval) {
+    public CountDownTimer() {
+        CountDownParam countDownParam = getCountDownParam();
+        Calendar startDate = countDownParam.getStartDate();
+        Calendar endDate = countDownParam.getEndDate();
+        int timeInterval = countDownParam.getTimeInterval();
+
         curSec = calculateCurSec(startDate, endDate, timeInterval);
         System.out.println("count down from " + timeInterval + " s ");
         Timer timer = new Timer();
@@ -44,6 +48,8 @@ public class CountDown {
         }
     }
 
+    abstract CountDownParam getCountDownParam();
+
     public static void main(String[] args) {
         Calendar startDate = Calendar.getInstance();
         startDate.set(startDate.get(Calendar.YEAR), startDate.get(Calendar.MONTH),
@@ -55,7 +61,7 @@ public class CountDown {
 
        /* Date startDate = DateUtils.parseDate("2018-09-28 17:20:00", "yyyy-MM-dd HH:mm:ss");
         Date endDate = DateUtils.parseDate("2018-09-28 17:27:00", "yyyy-MM-dd HH:mm:ss");*/
-        new CountDown(startDate, endDate, 60);
+        //new CountDownTimer();
     }
 
 }
