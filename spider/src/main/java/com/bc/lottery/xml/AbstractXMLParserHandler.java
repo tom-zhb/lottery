@@ -1,18 +1,16 @@
 package com.bc.lottery.xml;
 
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
+import com.bc.lottery.domain.lottery.KuaiSan;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public abstract class AbstractXMLParserHandler extends DefaultHandler {
-    private final List<Map<String, Object>> resultMapList = new ArrayList<>();
+public abstract class AbstractXMLParserHandler<T> extends DefaultHandler {
+    private final List<T> dataList = new ArrayList<>();
 
     @Override
     public void startDocument() throws SAXException {
@@ -46,27 +44,21 @@ public abstract class AbstractXMLParserHandler extends DefaultHandler {
         super.startElement(uri, localName, qName, attributes);
         int num = attributes.getLength();
         if (num > 0) {
-            resultMapList.add(parseField(setFields(), attributes));
-        }
-    }
-
-    protected abstract String[] setFields();
-
-    public List<Map<String, Object>> getFieldValues() {
-        return resultMapList;
-    }
-
-    public Map<String, Object> parseField(String[] fields, Attributes attributes) {
-        Map<String, Object> map = new HashMap<>();
-        if (ArrayUtils.isNotEmpty(fields)) {
-            for (String field : fields) {
-                if (StringUtils.isNoneBlank(field)) {
-                    map.put(field, attributes.getValue(field));
-                }
+            try {
+                dataList.add(parseField(getFields(), attributes));
+            } catch (ParseException | IllegalAccessException | InstantiationException e) {
+                e.printStackTrace();
             }
         }
-        return map;
     }
+
+    protected abstract String[] getFields();
+
+    public List<T> getDataList() {
+        return dataList;
+    }
+
+    public abstract T parseField(String[] fields, Attributes attributes) throws ParseException, IllegalAccessException, InstantiationException;
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {

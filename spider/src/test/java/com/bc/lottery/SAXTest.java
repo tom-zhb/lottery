@@ -83,7 +83,7 @@ public class SAXTest {
         try {
             SAXParser parser=factory.newSAXParser();
             //创建SAXParserHandler对象
-            WubaiwanParserHandler handler=new WubaiwanParserHandler();
+            WubaiwanKuaisanParserHandler handler=new WubaiwanKuaisanParserHandler();
 
             StringReader sr = new StringReader(strXML);
             InputSource is = new InputSource(sr);

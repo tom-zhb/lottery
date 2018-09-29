@@ -13,25 +13,27 @@ public abstract class CountDownTimer {
 
     public CountDownTimer() {
         CountDownParam countDownParam = getCountDownParam();
-        Calendar startDate = countDownParam.getStartDate();
-        Calendar endDate = countDownParam.getEndDate();
-        int timeInterval = countDownParam.getTimeInterval();
+        if (countDownParam != null) {
+            Calendar startDate = countDownParam.getStartDate();
+            Calendar endDate = countDownParam.getEndDate();
+            int timeInterval = countDownParam.getTimeInterval();
 
-        curSec = calculateCurSec(startDate, endDate, timeInterval);
-        System.out.println("count down from " + timeInterval + " s ");
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            public void run() {
-                if (System.currentTimeMillis() >= endDate.getTimeInMillis()) {
-                    timer.cancel();
-                    return;
+            curSec = calculateCurSec(startDate, endDate, timeInterval);
+            System.out.println("count down from " + timeInterval + " s ");
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    if (System.currentTimeMillis() >= endDate.getTimeInMillis()) {
+                        timer.cancel();
+                        return;
+                    }
+                    if (curSec <= 0) {
+                        curSec = calculateCurSec(startDate, endDate, timeInterval);
+                    }
+                    System.out.println("Time remians " + --curSec + " s");
                 }
-                if (curSec <= 0) {
-                    curSec = calculateCurSec(startDate, endDate, timeInterval);
-                }
-                System.out.println("Time remians " + --curSec + " s");
-            }
-        }, startDate.getTime(), 1000);
+            }, startDate.getTime(), 1000);
+        }
     }
 
     private long calculateCurSec(Calendar startDate, Calendar endDate, int timeInterval) {

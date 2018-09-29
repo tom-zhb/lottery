@@ -1,4 +1,3 @@
-/*
 package com.bc.lottery;
 
 import org.springframework.boot.SpringApplication;
@@ -12,9 +11,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableScheduling
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.bc.lottery.*"})
-public class CommonApplication extends WebMvcConfigurerAdapter {
-    */
-/*@Bean
+public class SpiderApplication extends WebMvcConfigurerAdapter {
+    /*@Bean
     public HandlerInterceptor getTokenInterceptor(){
         return new TokenInterceptor();
     }
@@ -23,10 +21,8 @@ public class CommonApplication extends WebMvcConfigurerAdapter {
 //        registry.addInterceptor(getTokenInterceptor()).addPathPatterns("/online-scalper/*").excludePathPatterns("/job/**");
 
         registry.addInterceptor(getTokenInterceptor()).addPathPatterns("/online-scalper/*");
-    }*//*
-
+    }*/
     public static void main(String[] args) {
-        SpringApplication.run(CommonApplication.class, args);
+        SpringApplication.run(SpiderApplication.class, args);
     }
 }
-*/

@@ -9,7 +9,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class KuaiSan {
+public abstract class KuaiSan {
     public String issue;
     public Date openTime;
     public String number;

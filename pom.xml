@@ -11,6 +11,7 @@
         <module>common</module>
         <module>lottery-api</module>
         <module>spider</module>
+        <module>timer</module>
     </modules>
     <packaging>pom</packaging>
 
