@@ -1,5 +1,6 @@
 package com.bc.lottery;
 
+import com.bc.lottery.spider.handler.WubaiwanParserHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -83,7 +84,7 @@ public class SAXTest {
         try {
             SAXParser parser=factory.newSAXParser();
             //创建SAXParserHandler对象
-            WubaiwanKuaisanParserHandler handler=new WubaiwanKuaisanParserHandler();
+            WubaiwanParserHandler handler=new WubaiwanParserHandler();
 
             StringReader sr = new StringReader(strXML);
             InputSource is = new InputSource(sr);

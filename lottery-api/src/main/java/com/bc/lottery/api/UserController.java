@@ -1,7 +1,7 @@
 package com.bc.lottery.api;
 
-import com.bc.lottery.core.annotation.TokenAuth;
-import com.bc.lottery.dto.JsonResultModel;
+import com.bc.lottery.common.core.annotation.TokenAuth;
+import com.bc.lottery.common.dto.JsonResultModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
