@@ -1,9 +1,10 @@
 package com.bc.lottery.common.service;
 
-import com.bc.lottery.common.domain.lottery.AnhuiKS;
-import com.bc.lottery.common.domain.lottery.HubeiKS;
-import com.bc.lottery.common.domain.lottery.KuaiSan;
+import com.bc.lottery.common.domain.lottery.kuaisan.HebeiKS;
+import com.bc.lottery.common.domain.lottery.kuaisan.HubeiKS;
+import com.bc.lottery.common.domain.lottery.kuaisan.KuaiSan;
 import com.bc.lottery.common.enums.LotteryTypeEnum;
+import com.bc.lottery.common.mapper.lottery.HebeiKSMapper;
 import com.bc.lottery.common.mapper.lottery.HubeiKSMapper;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -25,22 +26,25 @@ public class KuaiSanService {
 
     @Resource
     private HubeiKSMapper hubeiKSMapper;
+    @Resource
+    HebeiKSMapper hebeiKSMapper;
 
     public int save(KuaiSan kuaiSan) {
-        final KuaiSan useKuaiSan = trim(kuaiSan);
         if (kuaiSan instanceof HubeiKS) {
-            hubeiKSMapper.insert((HubeiKS) useKuaiSan);
-        } else if (kuaiSan instanceof AnhuiKS) {
+            hubeiKSMapper.insert((HubeiKS) kuaiSan);
+        } else if (kuaiSan instanceof HebeiKS) {
+            hebeiKSMapper.insert((HebeiKS) kuaiSan);
         }
         return 0;
     }
 
     public int save(LotteryTypeEnum typeEnum, List<Map<String, Object>> maplist) {
         try {
-            List kuaiSanList = convertKuaisan(maplist);
-            if (CollectionUtils.isNotEmpty(kuaiSanList)) {
+            if (CollectionUtils.isNotEmpty(maplist)) {
                 if (typeEnum.equals(LotteryTypeEnum.KuaiSan.HUBEI)) {
-                    hubeiKSMapper.insertList((List<HubeiKS>)kuaiSanList);
+                    hubeiKSMapper.insert((HubeiKS) buildKuaiSan(maplist.get(0), new HubeiKS()));
+                } else if (typeEnum.equals(LotteryTypeEnum.KuaiSan.HEBEI)) {
+                    hebeiKSMapper.insert((HebeiKS) buildKuaiSan(maplist.get(0), new HebeiKS()));
                 }
             }
         } catch (ParseException e) {
@@ -49,27 +53,25 @@ public class KuaiSanService {
         return 0;
     }
 
-    private List convertKuaisan(List<Map<String, Object>> maplist) throws ParseException {
+    private List buildKuaiSanList(List<Map<String, Object>> maplist, KuaiSan kuaiSan) throws ParseException {
         List<KuaiSan> kuaiSanList = null;
         if (CollectionUtils.isNotEmpty(maplist)) {
             kuaiSanList = new ArrayList<>();
             for (Map<String, Object> map : maplist) {
                 if (map != null) {
-                    KuaiSan kuaiSan = new KuaiSan();
-                    kuaiSan.setIssue(map.get("issue") + "");
-                    kuaiSan.setOpenTime(DateUtils.parseDate(map.get("openTime") + "", "yyyy-MM-dd HH:mm:ss"));
-                    kuaiSan.setCreateTime(new Date());
-                    kuaiSanList.add(kuaiSan);
+                    kuaiSanList.add(buildKuaiSan(map, kuaiSan));
                 }
             }
         }
         return kuaiSanList;
     }
 
-    private KuaiSan trim(KuaiSan kuaiSan) {
-        kuaiSan.setIssue(StringUtils.trim(kuaiSan.getIssue()));
-        kuaiSan.setNumber(StringUtils.trim(kuaiSan.getNumber()));
-        kuaiSan.setOpenTime(kuaiSan.getOpenTime());
+    private KuaiSan buildKuaiSan(Map<String, Object> map, KuaiSan kuaiSan) throws ParseException {
+        kuaiSan.setIssue(StringUtils.trim(map.get("issue") + ""));
+        kuaiSan.setOpenTime(DateUtils.parseDate(StringUtils.trim(map.get("openTime") + ""), "yyyy-MM-dd HH:mm:ss"));
+        kuaiSan.setNumber(StringUtils.trim(map.get("number") + ""));
+        kuaiSan.setCreateTime(new Date());
         return kuaiSan;
     }
+
 }

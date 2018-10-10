@@ -12,6 +12,8 @@ spring:
  application.name: spider
  profiles.active: local
  output.ansi.enabled: detect
+ profiles:
+   include: site
 
 ---
 spring:

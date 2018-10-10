@@ -5,9 +5,11 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.xml.sax.Attributes;
 
 import java.text.ParseException;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
-public class WubaiwanParserHandler extends AbstractXMLParserHandler<List<Map<String, Object>>> {
+public class WubaiwanParserHandler extends AbstractXMLParserHandler<Map<String, Object>> {
 
     @Override
     protected String[] getFields() {
@@ -15,14 +17,13 @@ public class WubaiwanParserHandler extends AbstractXMLParserHandler<List<Map<Str
     }
 
     @Override
-    public List<Map<String, Object>> parseField(String[] fields, Attributes attributes) throws ParseException, IllegalAccessException, InstantiationException {
+    public Map<String, Object> parseField(String[] fields, Attributes attributes) throws ParseException, IllegalAccessException, InstantiationException {
         Map<String, Object> map = null;
         if (ArrayUtils.isNotEmpty(fields)) {
-            List<Map<String, Object>> maplist = new ArrayList<>();
             map = new HashMap<>();
-            map.put(getFields()[0], attributes.getValue(getFields()[0]));
-            map.put(getFields()[1], attributes.getValue(getFields()[1]));
-            map.put(getFields()[2], attributes.getValue(getFields()[2]));
+            map.put("issue", attributes.getValue(getFields()[0]));
+            map.put("number", attributes.getValue(getFields()[1]));
+            map.put("openTime", attributes.getValue(getFields()[2]));
             //kuaiSan = (HubeiKS) GenericsUtils.getSuperClassGenricType(getClass()).newInstance();
           /*  for (String field : fields) {
                 if (StringUtils.isNoneBlank(field)) {
@@ -33,7 +34,6 @@ public class WubaiwanParserHandler extends AbstractXMLParserHandler<List<Map<Str
                 }
             }*/
         }
-        return Arrays.asList(map);
-        //return kuaiSan;
+        return map;
     }
 }

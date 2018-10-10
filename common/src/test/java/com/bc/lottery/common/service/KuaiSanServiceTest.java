@@ -1,6 +1,6 @@
 package com.bc.lottery.common.service;
 
-import com.bc.lottery.common.domain.lottery.HubeiKS;
+import com.bc.lottery.common.domain.lottery.kuaisan.HubeiKS;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableAsync
 @EnableScheduling
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.bc.lottery.*"})
+@ComponentScan({"com.bc.lottery.*"})
 public class SpiderApplication extends WebMvcConfigurerAdapter {
     /*@Bean
     public HandlerInterceptor getTokenInterceptor(){
@@ -26,7 +26,7 @@ public class SpiderApplication extends WebMvcConfigurerAdapter {
     public static void main(String[] args) {
         SpringApplication.run(SpiderApplication.class, args);
 
-        //SpiderBoot.start();
+        SpiderBoot.run();
     }
 
 }
