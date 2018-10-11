@@ -12,6 +12,13 @@
     <groupId>com.bc.lottery</groupId>
     <artifactId>spider</artifactId>
 
+
+    <properties>
+        <elastic-job.version>2.1.5</elastic-job.version>
+        <curator.version>2.10.0</curator.version>
+    </properties>
+
+
     <dependencies>
         <dependency>
             <groupId>us.codecraft</groupId>
@@ -68,7 +75,51 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
-    </dependencies>
 
+
+
+        <dependency>
+            <groupId>com.dangdang</groupId>
+            <artifactId>elastic-job-lite-core</artifactId>
+            <version>${elastic-job.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>curator-client</artifactId>
+                    <groupId>org.apache.curator</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>curator-framework</artifactId>
+                    <groupId>org.apache.curator</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>curator-recipes</artifactId>
+                    <groupId>org.apache.curator</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+            <version>${curator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-client</artifactId>
+            <version>${curator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>${curator.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dangdang</groupId>
+            <artifactId>elastic-job-lite-spring</artifactId>
+            <version>${elastic-job.version}</version>
+        </dependency>
+
+    </dependencies>
 
 </project>
