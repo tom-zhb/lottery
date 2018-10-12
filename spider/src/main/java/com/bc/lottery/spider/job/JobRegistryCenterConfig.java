@@ -1,3 +1,4 @@
+/*
 package com.bc.lottery.spider.job;
 
 import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperConfiguration;
@@ -17,4 +18,4 @@ public class JobRegistryCenterConfig {
         return new ZookeeperRegistryCenter(new ZookeeperConfiguration(serverList, namespace));
     }
 
-}
+}*/

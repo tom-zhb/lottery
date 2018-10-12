@@ -1,3 +1,4 @@
+/*
 package com.bc.lottery.spider.job;
 
 import com.dangdang.ddframe.job.api.simple.SimpleJob;
@@ -12,38 +13,35 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
-public class StockJobConfig {
 
-    @Autowired
-    private JobRegistryCenterConfig jobRegistryCenterConfig;
-    @Autowired
-    private ZookeeperRegistryCenter regCenter;
+public class JobConfig {
 
-    public StockJobConfig() {
+    //@Autowired
+    //private JobRegistryCenterConfig jobRegistryCenterConfig;
+
+    public SpringJobScheduler configJob(final SimpleJob simpleJob,
+                                        //@Value("${elasticJob.stockJob.cron}")
+                                        final String cron,
+                                        //@Value("${elasticJob.stockJob.shardingTotalCount}")
+                                        final int shardingTotalCount,
+                                        //@Value("${elasticJob.stockJob.shardingItemParameters}")
+                                        final String shardingItemParameters,
+                                        final ZookeeperRegistryCenter regCenter) {
+        return new SpringJobScheduler(simpleJob, regCenter,
+                getLiteJobConfiguration(simpleJob.getClass(), cron,
+                        shardingTotalCount,
+                        shardingItemParameters));
     }
 
-    @Bean
-    public SimpleJob stockJob() {
-        return new StockSimpleJob();
-    }
-
-    @Bean(initMethod = "init")
-    public JobScheduler simpleJobScheduler(final SimpleJob simpleJob,
-                                           @Value("${elasticJob.stockJob.cron}") final String cron,
-                                           @Value("${elasticJob.stockJob.shardingTotalCount}") final int shardingTotalCount,
-                                           @Value("${elasticJob.stockJob.shardingItemParameters}") final String shardingItemParameters) {
-        return new SpringJobScheduler(simpleJob, regCenter, getLiteJobConfiguration(simpleJob.getClass(), cron, shardingTotalCount, shardingItemParameters));
-    }
-
-    /**
+    */
+/**
      * @Description 任务配置类
-     */
+     *//*
+
     private LiteJobConfiguration getLiteJobConfiguration(final Class<? extends SimpleJob> jobClass,
                                                          final String cron,
                                                          final int shardingTotalCount,
                                                          final String shardingItemParameters) {
-
 
         return LiteJobConfiguration.newBuilder(
                 new SimpleJobConfiguration(
@@ -56,4 +54,4 @@ public class StockJobConfig {
         ).overwrite(true).build();
 
     }
-}
+}*/
