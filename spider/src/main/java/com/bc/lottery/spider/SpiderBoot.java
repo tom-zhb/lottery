@@ -27,6 +27,10 @@ public class SpiderBoot {
         spiderBoot.kuaiSanURLS = this.kuaiSanURLS;
     }
 
+    public static SpiderBoot getInstance() {
+        return spiderBoot;
+    }
+
     private String geneURL(String url, String today) {
         return String.format(url, today);
     }
@@ -43,7 +47,4 @@ public class SpiderBoot {
 //                addUrl(geneURL(kuaiSanURLS.getHebei(), today)).run();
     }
 
-    public static void run() {
-        SpiderBoot.spiderBoot.kuaisanStart();
-    }
 }

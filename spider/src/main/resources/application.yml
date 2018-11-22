@@ -30,9 +30,9 @@ spring:
 server:
   port: 8080
 
-elasticJob:
-  regCenter:
-    serverList: localhost:2181
+elaticjob:
+  zookeeper:
+    server-lists: localhost:2181
     namespace: elastic-job-lite-springboot
   stockJob:
       cron: 0/5 * * * * ?
@@ -49,17 +49,14 @@ spring:
       password: root
       driverClassName: com.mysql.jdbc.Driver
 
----
-spring:
-  profiles: pre
-
-  datasource:
-    lottery:
-      url: jdbc:mysql://localhost:3306/lottery?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
-      username: root
-      password: root
-      driverClassName: com.mysql.jdbc.Driver
-
+elaticjob:
+  zookeeper:
+    server-lists: localhost:2181
+    namespace: elastic-job-lite-springboot
+  stockJob:
+      cron: 0/5 * * * * ?
+      shardingTotalCount: 2
+      shardingItemParameters: 0=Chengdu0,1=Chengdu1
 ---
 spring:
   profiles: pre

@@ -26,7 +26,6 @@ public class SpiderApplication extends WebMvcConfigurerAdapter {
     public static void main(String[] args) {
         SpringApplication.run(SpiderApplication.class, args);
 
-        //SpiderBoot.run();
     }
 
 }
