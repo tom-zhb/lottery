@@ -1,6 +1,6 @@
 package com.bc.lottery.common.enums;
 
-import com.bc.lottery.common.utils.CalendarUtils;
+import com.bc.lottery.common.util.CalendarUtils;
 import lombok.Getter;
 
 import java.util.Calendar;

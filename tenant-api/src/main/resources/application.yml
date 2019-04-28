@@ -1,0 +1,52 @@
+spring:
+ application.name: tenant-api
+ profiles.active: local
+ output.ansi.enabled: detect
+
+---
+spring:
+  profiles: local
+
+  datasource:
+    lottery:
+      url: jdbc:mysql://localhost:3306/tenant?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+
+---
+spring:
+  profiles: test
+
+  datasource:
+    lottery:
+      url: jdbc:mysql://localhost:3306/tenant?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+
+---
+spring:
+  profiles: pre
+
+  datasource:
+    lottery:
+      url: jdbc:mysql://localhost:3306/tenant?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+
+---
+spring:
+  profiles: production
+
+  datasource:
+    lottery:
+      url: jdbc:mysql://localhost:3306/tenant?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+
+---
+cache:
+  redis:

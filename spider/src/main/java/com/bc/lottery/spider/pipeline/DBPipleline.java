@@ -1,19 +1,16 @@
 package com.bc.lottery.spider.pipeline;
 
 import com.bc.lottery.common.enums.LotteryTypeEnum;
-import com.bc.lottery.common.mapper.lottery.HubeiKSMapper;
-import com.bc.lottery.common.service.KuaiSanService;
-import com.bc.lottery.common.utils.GenericsUtils;
+import com.bc.lottery.common.service.lottery.KuaiSanService;
+import com.bc.lottery.common.util.GenericsUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 

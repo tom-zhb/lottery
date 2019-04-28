@@ -3,7 +3,7 @@ package com.bc.lottery.common.timer;
 
 import com.bc.lottery.common.enums.LotteryTypeEnum;
 import com.bc.lottery.common.enums.LotteryTypeEnum.KuaiSan;
-import com.bc.lottery.common.utils.mapper.JsonMapper;
+import com.bc.lottery.common.util.mapper.JsonMapper;
 
 import java.util.HashMap;
 import java.util.Map;

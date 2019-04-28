@@ -1,6 +1,6 @@
 package com.bc.lottery.common.exception;
 
-import com.bc.lottery.common.utils.mapper.JsonMapper;
+import com.bc.lottery.common.util.mapper.JsonMapper;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;

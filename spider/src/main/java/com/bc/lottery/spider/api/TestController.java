@@ -1,7 +1,7 @@
 package com.bc.lottery.spider.api;
 
 import com.bc.lottery.common.domain.lottery.kuaisan.HubeiKS;
-import com.bc.lottery.common.service.KuaiSanService;
+import com.bc.lottery.common.service.lottery.KuaiSanService;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

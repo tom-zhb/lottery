@@ -12,6 +12,7 @@
         <module>lottery-api</module>
         <module>spider</module>
         <module>timer</module>
+        <module>tenant-api</module>
     </modules>
     <packaging>pom</packaging>
 

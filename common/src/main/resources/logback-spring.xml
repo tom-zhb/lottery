@@ -33,34 +33,34 @@
 
 
     <!--输出到文件-->
-    <appender name="online_classroom_async_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/data/logs/scalper_async.log</file>
-        <Append>true</Append>
-        <prudent>false</prudent>
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}  %line - %msg%n</pattern>
-        </encoder>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!--归档日志文件名-->
-            <fileNamePattern>/data/logs/scalper_async.log.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
-            <!--日志文件保留个数-->
-            <maxHistory>7</maxHistory>
-        </rollingPolicy>
-    </appender>
+    <!--<appender name="online_classroom_async_file" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+        <!--<file>/data/logs/scalper_async.log</file>-->
+        <!--<Append>true</Append>-->
+        <!--<prudent>false</prudent>-->
+        <!--<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+            <!--&lt;!&ndash;格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符&ndash;&gt;-->
+            <!--<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}  %line - %msg%n</pattern>-->
+        <!--</encoder>-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+            <!--&lt;!&ndash;归档日志文件名&ndash;&gt;-->
+            <!--<fileNamePattern>/data/logs/scalper_async.log.%d{yyyy-MM-dd}.log.gz</fileNamePattern>-->
+            <!--&lt;!&ndash;日志文件保留个数&ndash;&gt;-->
+            <!--<maxHistory>7</maxHistory>-->
+        <!--</rollingPolicy>-->
+    <!--</appender>-->
 
-    <!--异步输出-->
-    <appender name="online_classroom_async" class="ch.qos.logback.classic.AsyncAppender">
-        <discardingThreshold>0</discardingThreshold>
-        <queueSize>10</queueSize>
-        <appender-ref ref="online_classroom_async_file"/>
-    </appender>
+    <!--&lt;!&ndash;异步输出&ndash;&gt;-->
+    <!--<appender name="online_classroom_async" class="ch.qos.logback.classic.AsyncAppender">-->
+        <!--<discardingThreshold>0</discardingThreshold>-->
+        <!--<queueSize>10</queueSize>-->
+        <!--<appender-ref ref="online_classroom_async_file"/>-->
+    <!--</appender>-->
 
 
 
     <!-- 测试环境+开发环境. 多个使用逗号隔开. -->
     <springProfile name="local">
-        <logger name="com.sayabc.online.classroom" level="debug"/>
+        <logger name="com.bc.lottery" level="debug"/>
         <logger name="org.springframework" level="info"/>
         <root level="debug">
             <appender-ref ref="console"/>
@@ -69,7 +69,7 @@
     </springProfile>
     <!-- 测试环境+开发环境. 多个使用逗号隔开. -->
     <springProfile name="test">
-        <logger name="com.sayabc.online.classroom" level="debug"/>
+        <logger name="com.bc.lottery" level="debug"/>
         <logger name="org.springframework" level="info"/>
         <root level="debug">
             <appender-ref ref="console"/>
@@ -79,7 +79,7 @@
     </springProfile>
     <!-- 生产环境. -->
     <springProfile name="production">
-        <logger name="com.sayabc.online.classroom" level="info"/>
+        <logger name="com.bc.lottery" level="info"/>
         <root level="info">
             <appender-ref ref="console"/>
             <appender-ref ref="file"/>

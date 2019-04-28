@@ -1,6 +1,6 @@
 package com.bc.lottery.spider.comm;
 
-import com.bc.lottery.common.service.KuaiSanService;
+import com.bc.lottery.common.service.lottery.KuaiSanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -9,7 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.bc.lottery</groupId>
     <artifactId>lottery-api</artifactId>
 
 
@@ -19,8 +18,6 @@
             <artifactId>common</artifactId>
             <version>1.0</version>
         </dependency>
-
-
     </dependencies>
 
     <build>

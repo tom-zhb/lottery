@@ -1,4 +1,4 @@
-/*
+
 
 package com.bc.lottery.common;
 
@@ -12,20 +12,21 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableAsync
 @EnableScheduling
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.bc.lottery.*"})
+//@ComponentScan(basePackages = {"com.bc.lottery.*"})
 public class CommonApplication extends WebMvcConfigurerAdapter {
 
-*/
-/* @Bean
+
+   /* @Bean
     public HandlerInterceptor getTokenInterceptor(){
         return new TokenInterceptor();
     }
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-      registry.addInterceptor(getTokenInterceptor()).addPathPatterns("/online-scalper/*").excludePathPatterns("/job/**");
+        registry.addInterceptor(getTokenInterceptor()).addPathPatterns("/online-scalper/*").excludePathPatterns("/job/**");
 
         registry.addInterceptor(getTokenInterceptor()).addPathPatterns("/online-scalper/*");
-    }*//*
+    }*/
 
 
 
@@ -34,4 +35,4 @@ public class CommonApplication extends WebMvcConfigurerAdapter {
     }
 }
 
-*/
+

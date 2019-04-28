@@ -1,3 +1,4 @@
+/*
 package com.bc.lottery.common.dto;
 
 import java.util.ArrayList;
@@ -5,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+*/
 /**
  * json 输出结构
  * {
@@ -39,7 +41,8 @@ import java.util.Map;
  * new JsonResult(true,"success message").setData(list);
  *
  * @author congshuanglong
- */
+ *//*
+
 public class JsonResult {
     private boolean flag;
     private String message;
@@ -101,24 +104,28 @@ public class JsonResult {
         return this;
     }
 
-    /**
+    */
+/**
      * 向Map类型data中插入数据
      *
      * @param name
      * @param value
-     */
+     *//*
+
     public JsonResult putData(String name, Object value) {
         Map<String, Object> map = this.initData(HashMap.class);
         map.put(name, value);
         return this;
     }
 
-    /**
+    */
+/**
      * 向List类型data中添加数据
      *
      * @param object
      * @return
-     */
+     *//*
+
     public JsonResult addData(Object object) {
         List<Object> list = this.initData(ArrayList.class);
         list.add(object);
@@ -138,11 +145,13 @@ public class JsonResult {
         return (E) this.data;
     }
 
-    /**
+    */
+/**
      * @Description 测试方法， 输出json格式
      * @param object
      * @throws
-     */
+     *//*
+
 //    public static String getJsonString(Object object){
 //        try {
 ////    		mapper.setSerializationInclusion(Inclusion.NON_NULL); //不显示为空的属性
@@ -158,12 +167,15 @@ public class JsonResult {
 //        return null;
 //    }
 
-    /**
+    */
+/**
      * @Description 测试方法， 输出json格式, 如果有null输出""
      * @param object
      * @throws
-     */
-    /*public static String getJsonStringHandleNull(Object object){
+     *//*
+
+    */
+/*public static String getJsonStringHandleNull(Object object){
         try {
     		mapper.setSerializationInclusion(JsonSerialize.Inclusion.NON_NULL); //不显示为空的属性
 //            ObjectMapper mapper1 = new JsonNullObjectMapper();
@@ -178,11 +190,15 @@ public class JsonResult {
         return null;
     }
 
-    *//**
+    *//*
+*/
+/**
      * 字符串转VO对象
      * @param <T>
      * @return
      *//*
+*/
+/*
     @SuppressWarnings({ "unchecked", "static-access" })
     public static <T> Object readValueToVO(String input, @SuppressWarnings("rawtypes") Class<T> clazz) {
         Object object =null;
@@ -198,10 +214,12 @@ public class JsonResult {
             e.printStackTrace();
         }
         return object;
-    }*/
+    }*//*
+
 
     public static JsonResult SUCCESS() {
         return SUCCESS;
     }
 }
 
+*/
