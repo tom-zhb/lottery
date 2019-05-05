@@ -1,7 +1,7 @@
 package com.bc.lottery.api;
 
 import com.bc.lottery.common.core.annotation.TokenAuth;
-import com.bc.lottery.common.dto.JsonResultModel;
+import com.bc.lottery.common.core.api.R;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -15,17 +15,17 @@ public class UserController {
 
     @TokenAuth
     @RequestMapping(value = "/login/", method = {RequestMethod.POST})
-    public JsonResultModel login(@PathVariable String userName, @PathVariable Long password) {
+    public R login(@PathVariable String userName, @PathVariable Long password) {
         return null;
     }
 
     @PostMapping(value = "/register")
-    public JsonResultModel register(@RequestBody RegisterVO registerVO) {
+    public R register(@RequestBody RegisterVO registerVO) {
         return null;
     }
 
     @GetMapping(value = "/classroomInfo/{classroomId}")
-    public JsonResultModel getClassroomInfoByRoomId(@PathVariable String classroomId,
+    public R getClassroomInfoByRoomId(@PathVariable String classroomId,
                                                     @RequestParam("accountId") final Integer accountId) {
         return null;
     }

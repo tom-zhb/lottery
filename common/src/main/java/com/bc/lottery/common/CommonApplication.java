@@ -1,3 +1,4 @@
+/*
 
 
 package com.bc.lottery.common;
@@ -16,7 +17,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class CommonApplication extends WebMvcConfigurerAdapter {
 
 
-   /* @Bean
+   */
+/* @Bean
     public HandlerInterceptor getTokenInterceptor(){
         return new TokenInterceptor();
     }
@@ -26,7 +28,8 @@ public class CommonApplication extends WebMvcConfigurerAdapter {
         registry.addInterceptor(getTokenInterceptor()).addPathPatterns("/online-scalper/*").excludePathPatterns("/job/**");
 
         registry.addInterceptor(getTokenInterceptor()).addPathPatterns("/online-scalper/*");
-    }*/
+    }*//*
+
 
 
 
@@ -36,3 +39,4 @@ public class CommonApplication extends WebMvcConfigurerAdapter {
 }
 
 
+*/

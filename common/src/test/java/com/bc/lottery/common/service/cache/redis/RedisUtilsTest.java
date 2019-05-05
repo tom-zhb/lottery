@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -17,6 +18,8 @@ public class RedisUtilsTest {
     @Test
     public void test() {
         //System.out.println("11111111111");
-        redisUtils.set("a", "11111");
+        //redisUtils.setEx("a", "11111", 30, TimeUnit.SECONDS);
+        String value = redisUtils.get("a");
+        System.out.println("============" + value);
     }
 }

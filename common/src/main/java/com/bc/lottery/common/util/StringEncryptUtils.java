@@ -1,5 +1,7 @@
 package com.bc.lottery.common.util;
 
+import org.springframework.util.DigestUtils;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -13,22 +15,17 @@ public class StringEncryptUtils {
      *            加密类型
      * @return
      */
-    public static String Encrypt(String strSrc, String encName) {
-        MessageDigest md = null;
-        String strDes = null;
-
-        byte[] bt = strSrc.getBytes();
+    public static String encrypt(String strSrc, String encName) {
         try {
             if (encName == null || encName.equals("")) {
                 encName = "SHA-256";
             }
-            md = MessageDigest.getInstance(encName);
-            md.update(bt);
-            strDes = bytes2Hex(md.digest()); // to HexString
+            MessageDigest md = MessageDigest.getInstance(encName);
+            md.update(strSrc.getBytes());
+            return bytes2Hex(md.digest()); // to HexString
         } catch (NoSuchAlgorithmException e) {
             return null;
         }
-        return strDes;
     }
 
     public static String bytes2Hex(byte[] bts) {
@@ -45,7 +42,10 @@ public class StringEncryptUtils {
     }
 
     public static void main(String args[]){
-        String s= StringEncryptUtils.Encrypt("汪业培", "");
+        String str = "汪业培sdfsdfsed";
+        String s= StringEncryptUtils.encrypt(str, "MD5");
         System.out.println(s);
+        System.out.println(s.length());
+        System.out.println(DigestUtils.md5DigestAsHex(str.getBytes()));
     }
 }

@@ -12,7 +12,7 @@
         <module>lottery-api</module>
         <module>spider</module>
         <module>timer</module>
-        <module>tenant-api</module>
+        <module>tenant-manage</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -43,6 +43,10 @@
         <log4j-core.version>2.8.2</log4j-core.version>
         <elasticsearch.version>5.4.1</elasticsearch.version>
         <transport.version>5.4.1</transport.version>
+
+        <swagger.version>2.9.2</swagger.version>
+        <swagger.models.version>1.5.21</swagger.models.version>
+        <swagger.bootstrapui.version>1.9.2</swagger.bootstrapui.version>
     </properties>
 
     <dependencies>
@@ -124,8 +128,35 @@
                 <version>4.12</version>
                 <scope>test</scope>
             </dependency>
-        </dependencies>
 
+            <!--Swagger-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.swagger</groupId>
+                        <artifactId>swagger-models</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-models</artifactId>
+                <version>${swagger.models.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>swagger-bootstrap-ui</artifactId>
+                <version>${swagger.bootstrapui.version}</version>
+            </dependency>
+        </dependencies>
     </dependencyManagement>
 
 

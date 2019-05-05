@@ -1,0 +1,93 @@
+server:
+  context-path: /tenant
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+    min-response-size: 2048
+
+spring:
+ application.name: tenant-manage
+ profiles.active: local
+ output.ansi.enabled: detect
+
+---
+spring:
+  profiles: local
+
+  devtools:
+    restart:
+      enabled: true
+
+  datasource:
+    lottery:
+      url: jdbc:mysql://localhost:3306/lottery?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+    tenant:
+      url: jdbc:mysql://localhost:3306/tenant?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: 123
+    pool:
+      max-active: 8
+      max-wait: 1
+      max-idle: 8
+      min-idle: 0
+    timeout: 0
+  #thymelea模板配置
+
+  thymeleaf:
+    cache: false
+    prefix: classpath:/views/
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+    mode: LEGACYHTML5
+
+server:
+  port: 80
+---
+spring:
+  profiles: test
+
+  datasource:
+    lottery:
+      url: jdbc:mysql://localhost:3306/lottery?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+    tenant:
+      url: jdbc:mysql://localhost:3306/tenant?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+
+---
+spring:
+  profiles: pre
+
+  datasource:
+    tenant:
+      url: jdbc:mysql://localhost:3306/tenant?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+
+---
+spring:
+  profiles: production
+
+  datasource:
+    tenant:
+      url: jdbc:mysql://localhost:3306/tenant?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+

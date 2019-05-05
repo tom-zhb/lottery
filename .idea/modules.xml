@@ -6,7 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/lottery.iml" filepath="$PROJECT_DIR$/.idea/lottery.iml" />
       <module fileurl="file://$PROJECT_DIR$/lottery-api/lottery-api.iml" filepath="$PROJECT_DIR$/lottery-api/lottery-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/spider/spider.iml" filepath="$PROJECT_DIR$/spider/spider.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tenant-api/tenant-api.iml" filepath="$PROJECT_DIR$/tenant-api/tenant-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tenant-manage/tenant-manage.iml" filepath="$PROJECT_DIR$/tenant-manage/tenant-manage.iml" />
       <module fileurl="file://$PROJECT_DIR$/timer/timer.iml" filepath="$PROJECT_DIR$/timer/timer.iml" />
     </modules>
   </component>
