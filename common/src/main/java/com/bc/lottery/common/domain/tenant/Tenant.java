@@ -1,8 +1,6 @@
 package com.bc.lottery.common.domain.tenant;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Table;
 import java.util.Date;

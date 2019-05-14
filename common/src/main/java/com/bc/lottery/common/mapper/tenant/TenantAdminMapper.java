@@ -8,5 +8,7 @@ import org.apache.ibatis.annotations.Select;
 public interface TenantAdminMapper extends BaseMapper<TenantAdmin> {
 
     @Select("SELECT * FROM tenant_admin where user_name = #{userName} AND password = #{password}")
-    TenantAdmin getTenantAdminDO(@Param("userName") String userName, @Param("password") String password);
+    TenantAdmin getTenantAdmin(@Param("userName") String userName, @Param("password") String password);
+
+
 }

@@ -8,13 +8,17 @@ import com.bc.lottery.common.mapper.tenant.TenantAdminMapper;
 import com.bc.lottery.common.mapper.tenant.TenantMapper;
 import com.bc.lottery.common.util.TokenUtils;
 import com.bc.lottery.common.vo.TenantAdminVO;
+import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.session.RowBounds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -30,8 +34,8 @@ public class TenantAdminService {
     @Resource
     private RedisUtils redisUtils;
 
-    public int save(Tenant tenant) {
-        return tenanMapper.insert(tenant);
+    public int save(TenantAdmin tenantAdmin) {
+        return tenantAdminMapper.insert(tenantAdmin);
     }
 
     /**
@@ -41,7 +45,7 @@ public class TenantAdminService {
      * @return
      */
     public TenantAdminVO login(String userName, String password) {
-        TenantAdmin tenantAdmin = tenantAdminMapper.getTenantAdminDO(userName, password);
+        TenantAdmin tenantAdmin = tenantAdminMapper.getTenantAdmin(userName, password);
         TenantAdminVO vo = null;
         if (tenantAdmin != null) {
             // 缓存30分钟
@@ -50,7 +54,7 @@ public class TenantAdminService {
             redisUtils.setEx(sessionIDKey, TokenUtils.generateValue(), CacheEnum.TENANT_ADMIN_LOGIN_SESSION.getTimeout(), TimeUnit.MINUTES);
 
             vo = new TenantAdminVO();
-            vo.setNickname(tenantAdmin.getNickame());
+            vo.setNickname(tenantAdmin.getNickname());
             vo.setUserName(tenantAdmin.getUserName());
             vo.setSessionIDKey(sessionIDKey);
         }
@@ -68,6 +72,11 @@ public class TenantAdminService {
             return true;
         }
         return false;
+    }
+
+    @Transactional(readOnly = true)
+    public List<TenantAdmin> listTenantAdmins(){
+        return tenantAdminMapper.selectAll();
     }
 
 }

@@ -1,4 +1,4 @@
-package com.bc.lottery.common.service;
+package com.bc.lottery.common.service.lottery;
 
 import com.bc.lottery.common.domain.lottery.kuaisan.HubeiKS;
 import com.bc.lottery.common.service.lottery.KuaiSanService;

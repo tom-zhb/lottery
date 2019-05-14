@@ -16,12 +16,8 @@
 package com.bc.lottery.common.core.api;
 
 import com.bc.lottery.common.core.constant.SystemConstant;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
 
 /**
@@ -29,8 +25,7 @@ import java.io.Serializable;
  *
  * @author Chill
  */
-@Getter
-@Setter
+@Data
 @ToString
 @NoArgsConstructor
 public class R<T> implements Serializable {
@@ -86,7 +81,7 @@ public class R<T> implements Serializable {
      * @return R
      */
     public static <T> R<T> data(T data, String msg) {
-        return data(HttpServletResponse.SC_OK, data, msg);
+        return data(ResultCode.SUCCESS.code, data, msg);
     }
 
     /**

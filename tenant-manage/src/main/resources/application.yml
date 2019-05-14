@@ -51,6 +51,11 @@ spring:
     content-type: text/html
     mode: LEGACYHTML5
 
+  pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
 server:
   port: 80
 ---

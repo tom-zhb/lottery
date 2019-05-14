@@ -72,7 +72,7 @@
   <script th:src="@{/layui/layui.js}"></script>
   <script>
   layui.config({
-    base: '../../../layuiadmin/' //静态资源所在路径
+    base: '/tenant/' //静态资源所在路径
   }).extend({
     index: 'lib/index' //主入口模块
   }).use(['index', 'useradmin', 'table'], function(){
@@ -124,7 +124,7 @@
         layer.open({
           type: 2
           ,title: '添加用户'
-          ,content: 'userform.html'
+          ,content: 'userform'
           ,maxmin: true
           ,area: ['500px', '450px']
           ,btn: ['确定', '取消']

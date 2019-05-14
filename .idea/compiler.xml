@@ -18,7 +18,6 @@
       <module name="lottery" target="1.5" />
       <module name="lottery-api" target="1.8" />
       <module name="spider" target="1.8" />
-      <module name="tenant-api" target="1.8" />
       <module name="tenant-manage" target="1.8" />
       <module name="timer" target="1.8" />
     </bytecodeTargetLevel>

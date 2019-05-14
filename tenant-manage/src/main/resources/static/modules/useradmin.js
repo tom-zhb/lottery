@@ -56,7 +56,7 @@ layui.define(['table', 'form'], function(exports){
       layer.open({
         type: 2
         ,title: '编辑用户'
-        ,content: '../../../views/user/user/userform.html'
+        ,content: 'userform'
         ,maxmin: true
         ,area: ['500px', '450px']
         ,btn: ['确定', '取消']
@@ -87,21 +87,43 @@ layui.define(['table', 'form'], function(exports){
   //管理员管理
   table.render({
     elem: '#LAY-user-back-manage'
-    ,url: layui.setter.base + 'json/useradmin/mangadmin.js' //模拟接口
+    ,url: layui.setter.base + 'admin/list' //模拟接口
     ,cols: [[
       {type: 'checkbox', fixed: 'left'}
       ,{field: 'id', width: 80, title: 'ID', sort: true}
-      ,{field: 'loginname', title: '登录名'}
-      ,{field: 'telphone', title: '手机'}
+      ,{field: 'userName', title: '登录名'}
+      ,{field: 'mobile', title: '手机'}
       ,{field: 'email', title: '邮箱'}
-      ,{field: 'role', title: '角色'}
-      ,{field: 'jointime', title: '加入时间', sort: true}
-      ,{field: 'check', title:'审核状态', templet: '#buttonTpl', minWidth: 80, align: 'center'}
+      ,{field: 'role', title: '角色'
+       ,templet: function(d){
+          if(d.role == 1){
+            return '超级管理员'
+          } else {
+            return '<span  style="color:red">管理员</span>'
+          }
+        }
+       }
+      ,{field: 'regTime', title: '注册时间', sort: true}
+      ,{field: 'state', title:'状态', minWidth: 80, align: 'center'
+        ,templet: function(d){
+          if(d.state == 1){
+            return '正常'
+          } else {
+            return '<span  style="color:red">禁用</span>'
+          }
+        }
+       }
       ,{title: '操作', width: 150, align: 'center', fixed: 'right', toolbar: '#table-useradmin-admin'}
     ]]
     ,text: '对不起，加载出现异常！'
+    ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
+       return {
+         "code": res.code
+         ,"data": res.data //解析数据列表
+       };
+     }
   });
-  
+
   //监听工具条
   table.on('tool(LAY-user-back-manage)', function(obj){
     var data = obj.data;
@@ -123,7 +145,7 @@ layui.define(['table', 'form'], function(exports){
       layer.open({
         type: 2
         ,title: '编辑管理员'
-        ,content: '../../../views/user/administrators/adminform.html'
+        ,content: 'adminform'
         ,area: ['420px', '420px']
         ,btn: ['确定', '取消']
         ,yes: function(index, layero){
@@ -179,7 +201,7 @@ layui.define(['table', 'form'], function(exports){
       layer.open({
         type: 2
         ,title: '编辑角色'
-        ,content: '../../../views/user/administrators/roleform.html'
+        ,content: 'roleform'
         ,area: ['500px', '480px']
         ,btn: ['确定', '取消']
         ,yes: function(index, layero){

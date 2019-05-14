@@ -1,19 +1,17 @@
-
-
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <title>layuiAdmin 后台管理员</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
-  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link th:href="@{/layui/css/layui.css}" rel="stylesheet" media="all"/>
+  <link th:href="@{/style/admin.css}" rel="stylesheet" media="all"/>
 </head>
 <body>
 
-  <div class="layui-fluid">   
+  <div class="layui-fluid">
     <div class="layui-card">
       <div class="layui-form layui-card-header layuiadmin-card-header-auto">
         <div class="layui-form-item">
@@ -83,10 +81,10 @@
     </div>
   </div>
 
- <script src="../../../layuiadmin/layui/layui.js"></script>  
+  <script th:src="@{/layui/layui.js}"></script>
   <script>
   layui.config({
-    base: '../../../layuiadmin/' //静态资源所在路径
+    base: '/tenant/' //静态资源所在路径
   }).extend({
     index: 'lib/index' //主入口模块
   }).use(['index', 'useradmin', 'table'], function(){
@@ -138,7 +136,7 @@
         layer.open({
           type: 2
           ,title: '添加管理员'
-          ,content: 'adminform.html'
+          ,content: 'adminform'
           ,area: ['420px', '420px']
           ,btn: ['确定', '取消']
           ,yes: function(index, layero){
@@ -149,13 +147,25 @@
             //监听提交
             iframeWindow.layui.form.on('submit('+ submitID +')', function(data){
               var field = data.field; //获取提交的字段
-              
               //提交 Ajax 成功后，静态更新表格中的数据
-              //$.ajax({});
+              $.ajax({
+                type: "POST",
+                url: layui.setter.domain + "/admin/list",
+                data: field,
+                success: function (data) {
+                  parent.$('#table').bootstrapTable('refresh');
+                  parent.layer.close(index);
+                },
+                error: function(data) {
+                  alert("error:"+data);
+                }
+              });
               table.reload('LAY-user-front-submit'); //数据刷新
               layer.close(index); //关闭弹层
+
+              return false;
             });  
-            
+
             submit.trigger('click');
           }
         }); 

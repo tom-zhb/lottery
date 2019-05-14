@@ -1,6 +1,4 @@
-package com.bc.lottery.common.service.cache.redis;
-
-import org.apache.commons.lang3.StringUtils;
+package com.bc.lottery.common.cache.redis;
 
 import java.util.UUID;
 

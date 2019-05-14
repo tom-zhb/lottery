@@ -1,13 +1,11 @@
-package com.bc.lottery.common.service.cache.redis;
+package com.bc.lottery.common.cache.redis;
 
-import com.bc.lottery.common.cache.redis.RedisUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
-import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
