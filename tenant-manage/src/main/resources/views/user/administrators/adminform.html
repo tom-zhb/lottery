@@ -10,35 +10,52 @@
 </head>
 <body>
 
-  <div class="layui-form" lay-filter="layuiadmin-form-admin" id="layuiadmin-form-admin" style="padding: 20px 30px 0 0;">
+  <div class="layui-form" lay-filter="admin-form" id="admin-form" style="padding: 20px 30px 0 0;">
     <div class="layui-form-item">
       <label class="layui-form-label">登录名</label>
       <div class="layui-input-inline">
-        <input type="text" name="loginname" lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+        <input type="text" name="userName" lay-verify="required|username" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+        <input type="hidden" name="id" value="">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">密码</label>
+      <div class="layui-input-inline">
+        <input type="text" name="password" lay-verify="required|pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">昵称</label>
+      <div class="layui-input-inline">
+        <input type="text" name="nickname" lay-verify="required|nickname" placeholder="请输入昵称" autocomplete="off" class="layui-input">
       </div>
     </div>
     <div class="layui-form-item">
       <label class="layui-form-label">手机</label>
       <div class="layui-input-inline">
-        <input type="text" name="phone" lay-verify="phone" placeholder="请输入号码" autocomplete="off" class="layui-input">
+        <input type="text" name="mobile" lay-verify="_mobile" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
       </div>
     </div>
     <div class="layui-form-item">
       <label class="layui-form-label">邮箱</label>
       <div class="layui-input-inline">
-        <input type="text" name="email" lay-verify="email" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+        <input type="text" name="email" lay-verify="_email" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
       </div>
     </div>
     <div class="layui-form-item">
       <label class="layui-form-label">角色</label>
       <div class="layui-input-inline">
-        <input type="text" name="role" lay-verify="required" placeholder="请输入角色类型" autocomplete="off" class="layui-input">
+        <select id="role" name="role" lay-verify="required">
+          <option selected value="0">管理员</option>
+          <option value="1">超级管理员</option>
+        </select>
       </div>
     </div>
     <div class="layui-form-item">
-      <label class="layui-form-label">审核状态</label>
+      <label class="layui-form-label">状态</label>
       <div class="layui-input-inline">
-        <input type="checkbox" lay-filter="switch" name="switch" lay-skin="switch" lay-text="通过|待审核">
+        <input type="checkbox" lay-filter="switch" name="state" lay-skin="switch" lay-text="正常|禁用">
       </div>
     </div>
     <div class="layui-form-item layui-hide">
@@ -55,6 +72,59 @@
   }).use(['index', 'form'], function(){
     var $ = layui.$
     ,form = layui.form ;
+
+    //自定义验证
+    form.verify({
+      username: function(value, item){ //value：表单的值、item：表单的DOM对象
+        if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+          return '用户名不能有特殊字符';
+        }
+        if(/(^\_)|(\__)|(\_+$)/.test(value)){
+          return '用户名首尾不能出现下划线\'_\'';
+        }
+        if(/(^\_)|(\__)|(\_+$)/.test(value)){
+          return '用户名首尾不能出现下划线\'_\'';
+        }
+        if(/^\d+\d+\d$/.test(value)){
+          return '用户名不能全为数字';
+        }
+        if(!(/^.{4,10}$/.test(value))){
+          return '用户名长度4至10个字符';
+        }
+      }
+
+      //我们既支持上述函数式的方式，也支持下述数组的形式
+      //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+      ,pass: [
+        /^[\S]{8,15}$/
+        ,'密码必须8到15位，且不能出现空格'
+      ]
+      ,_email: function(value, item) {
+        //去除空格;
+        var str = value.replace(/(^\s*)|(\s*$)/g, '');
+        if (str != "") {
+          if (!(/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test(value))) {
+            return "邮箱不合法"
+          }
+        }
+      },
+      _mobile: function(value, item) {
+        //去除空格;
+        var str = value.replace(/(^\s*)|(\s*$)/g, '');
+        if (str != "") {
+          if (!(/^1[0-9]{10}$/.test(value))) {
+            return "手机号不合法";
+          }
+        }
+      }
+      //确认密码
+      /*
+        ,repass: function(value){
+        if(value !== $('#LAY_password').val()){
+          return '两次密码输入不一致';
+        }
+      }*/
+    });
   })
   </script>
 </body>

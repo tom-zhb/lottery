@@ -15,7 +15,7 @@ public enum CacheEnum {
     private TimeUnit timeUnit;
     private String description;
 
-    private CacheEnum(String cacheKeyPrefix, long timeout, TimeUnit timeUnit, String description) {
+    CacheEnum(String cacheKeyPrefix, long timeout, TimeUnit timeUnit, String description) {
         this.cacheKeyPrefix = cacheKeyPrefix;
         this.timeout = timeout;
         this.timeUnit = timeUnit;

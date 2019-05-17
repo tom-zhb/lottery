@@ -16,15 +16,15 @@
       <div class="layui-form layui-card-header layuiadmin-card-header-auto">
         <div class="layui-form-item">
           <div class="layui-inline">
-            <label class="layui-form-label">登录名</label>
+            <label class="layui-form-label">用户名</label>
             <div class="layui-input-block">
-              <input type="text" name="loginname" placeholder="请输入" autocomplete="off" class="layui-input">
+              <input type="text" name="userName" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
           </div>
           <div class="layui-inline">
             <label class="layui-form-label">手机</label>
             <div class="layui-input-block">
-              <input type="text" name="telphone" placeholder="请输入" autocomplete="off" class="layui-input">
+              <input type="text" name="mobile" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
           </div>
           <div class="layui-inline">
@@ -39,11 +39,6 @@
               <select name="role">
                 <option value="0">管理员</option>
                 <option value="1">超级管理员</option>
-                <option value="2">纠错员</option>
-                <option value="3">采购员</option>
-                <option value="4">推销员</option>
-                <option value="5">运营人员</option>
-                <option value="6">编辑</option>
               </select>
             </div>
           </div>
@@ -71,7 +66,7 @@
         </script>
         <script type="text/html" id="table-useradmin-admin">
           <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-          {{#  if(d.role == '超级管理员'){ }}
+          {{#  if(d.role == 1){ }}
             <a class="layui-btn layui-btn-disabled layui-btn-xs"><i class="layui-icon layui-icon-delete"></i>删除</a>
           {{#  } else { }}
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
@@ -91,7 +86,7 @@
     var $ = layui.$
     ,form = layui.form
     ,table = layui.table;
-    
+
     //监听搜索
     form.on('submit(LAY-user-back-search)', function(data){
       var field = data.field;
@@ -147,22 +142,24 @@
             //监听提交
             iframeWindow.layui.form.on('submit('+ submitID +')', function(data){
               var field = data.field; //获取提交的字段
+              data.field.state = (data.field.state == "on" ? 1 : 0)
               //提交 Ajax 成功后，静态更新表格中的数据
               $.ajax({
                 type: "POST",
-                url: layui.setter.domain + "/admin/list",
+                url: layui.setter.domain + "/admin/add",
                 data: field,
                 success: function (data) {
-                  parent.$('#table').bootstrapTable('refresh');
-                  parent.layer.close(index);
+                  /*parent.$('#table').bootstrapTable('refresh');
+                  parent.layer.close(index);*/
+                  layer.msg("添加成功");
                 },
                 error: function(data) {
-                  alert("error:"+data);
+                  layer.msg("添加失败");
                 }
               });
-              table.reload('LAY-user-front-submit'); //数据刷新
+              //table.reload('LAY-user-front-submit'); //数据刷新
+              table.reload('LAY-user-back-manage'); //数据刷新
               layer.close(index); //关闭弹层
-
               return false;
             });  
 

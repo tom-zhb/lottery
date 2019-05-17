@@ -62,7 +62,7 @@ layui.define(['table', 'form'], function(exports){
         ,btn: ['确定', '取消']
         ,yes: function(index, layero){
           var iframeWindow = window['layui-layer-iframe'+ index]
-          ,submitID = 'LAY-user-front-submit'
+          ,submitID = 'LAY-user-back-manage'
           ,submit = layero.find('iframe').contents().find('#'+ submitID);
 
           //监听提交
@@ -71,7 +71,7 @@ layui.define(['table', 'form'], function(exports){
             
             //提交 Ajax 成功后，静态更新表格中的数据
             //$.ajax({});
-            table.reload('LAY-user-front-submit'); //数据刷新
+            table.reload('LAY-user-back-manage'); //数据刷新
             layer.close(index); //关闭弹层
           });  
           
@@ -94,12 +94,12 @@ layui.define(['table', 'form'], function(exports){
       ,{field: 'userName', title: '登录名'}
       ,{field: 'mobile', title: '手机'}
       ,{field: 'email', title: '邮箱'}
-      ,{field: 'role', title: '角色'
+      ,{field: 'roleName', title: '角色'
        ,templet: function(d){
           if(d.role == 1){
-            return '超级管理员'
+            return '<span  style="color:red">超级管理员</span>'
           } else {
-            return '<span  style="color:red">管理员</span>'
+            return "管理员"
           }
         }
        }
@@ -127,6 +127,7 @@ layui.define(['table', 'form'], function(exports){
   //监听工具条
   table.on('tool(LAY-user-back-manage)', function(obj){
     var data = obj.data;
+    console.log(JSON.stringify(data))
     if(obj.event === 'del'){
       layer.prompt({
         formType: 1
@@ -141,8 +142,8 @@ layui.define(['table', 'form'], function(exports){
       });
     }else if(obj.event === 'edit'){
       var tr = $(obj.tr);
-
       layer.open({
+        //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
         type: 2
         ,title: '编辑管理员'
         ,content: 'adminform'
@@ -158,15 +159,35 @@ layui.define(['table', 'form'], function(exports){
             var field = data.field; //获取提交的字段
             
             //提交 Ajax 成功后，静态更新表格中的数据
-            //$.ajax({});
-            table.reload('LAY-user-front-submit'); //数据刷新
+            $.ajax({
+              type: "POST",
+              url: layui.setter.domain + "/admin/update",
+              data: field,
+              success: function (data) {
+                layer.msg("更新成功");
+              },
+              error: function(data) {
+                layer.msg("更新失败");
+              }
+            });
+            table.reload('LAY-user-back-manage'); //数据刷新
             layer.close(index); //关闭弹层
           });  
-          
           submit.trigger('click');
         }
-        ,success: function(layero, index){           
-          
+        ,success: function(layero, index){
+          console.log("index:" + index);
+          console.log("role:" + data.role);
+          console.log("state:" + data.state);
+          var admin_form = layero.find("iframe").contents().find("#admin-form");
+          admin_form.find('input[name="password"]').parents('.layui-form-item').remove();
+          admin_form.find('input[name="userName"]').val(data.userName).attr("disabled", "disabled").css("backgroundColor", "#e4e4e4");;
+          admin_form.find('input[name="nickname"]').val(data.nickname);
+          admin_form.find('input[name="mobile"]').val(data.mobile);
+          admin_form.find('input[name="email"]').val(data.email);
+          admin_form.find('select[name="role"] option[value="'+data.role+'"]').attr("selected","selected");
+          admin_form.find("input[name='state']").attr("checked", data.state == 1 ? true : false);
+          admin_form.find('input[name="id"]').val(data.id);
         }
       })
     }
